@@ -1,0 +1,47 @@
+﻿@model IEnumerable<UniversityProject.Models.Course>
+
+@{
+    ViewBag.Title = "Courses";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Courses</h2>
+
+<p>
+    @Html.ActionLink("Create New Course", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CourseBaseId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FieldId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TeacherId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitCount)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseBase.Caption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Field.Caption)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Teacher.FirstName)
+            @Html.DisplayFor(modelItem => item.Teacher.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitCount)
+        </td>
+    </tr>
+}
+
+</table>

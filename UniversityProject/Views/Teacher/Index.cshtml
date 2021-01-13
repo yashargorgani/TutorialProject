@@ -1,0 +1,47 @@
+﻿@model IEnumerable<UniversityProject.Models.Teacher>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Teachers</h2>
+<div>
+    @Html.ActionLink("Add a new Teacher", "Create", null, new { @class="btn btn-primary" })
+</div>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().FirstName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().LastName)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.FirstOrDefault().Fields)
+            </th>
+        </tr>
+
+        @foreach(var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(model => item.FirstName)
+            </td>
+
+            <td>
+                @Html.DisplayFor(model => item.LastName)
+            </td>
+
+            <td>
+                @foreach(var field in item.Fields)
+                {
+                    <span>@field.Caption</span>
+                }
+            </td>
+        </tr>
+        }
+    </table>
+</div>

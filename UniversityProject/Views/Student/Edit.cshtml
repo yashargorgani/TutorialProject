@@ -1,0 +1,50 @@
+﻿@model UniversityProject.Models.Student
+@{
+    /**/
+
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+}
+
+<h2>Edit Student @Model.FirstName @Model.LastName</h2>
+<label style="color:red">@ViewBag.Message</label>
+@using (Html.BeginForm("Edit", "Student", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(model => model.FirstName)
+        @Html.TextBoxFor(model => model.FirstName)
+        @Html.ValidationMessageFor(model => model.FirstName)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.LastName)
+        @Html.TextBoxFor(model => model.LastName)
+        @Html.ValidationMessageFor(model => model.LastName)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.StudentCode)
+        @Html.TextBoxFor(model => model.StudentCode)
+        @Html.ValidationMessageFor(model => model.StudentCode)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.IsGraduated)
+        @Html.CheckBoxFor(model => model.IsGraduated)
+        @Html.ValidationMessageFor(model => model.IsGraduated)
+    </div>
+
+    <div>
+        @Html.LabelFor(model => model.FieldId)
+        @Html.DropDownListFor(model => model.FieldId, (List<SelectListItem>)ViewBag.FieldSelectList, "Select ...")
+        @Html.ValidationMessageFor(model => model.FieldId)
+    </div>
+
+    <input type="submit" value="Submit" />
+}

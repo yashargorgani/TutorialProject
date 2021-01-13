@@ -1,0 +1,46 @@
+﻿@model IEnumerable<UniversityProject.Models.Student>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts
+{
+    <script>
+        function showDetails(id) {
+            $('#student-details-div').load('/Student/P_Details/' + id);
+        }
+    </script>
+}
+
+<h2>Index</h2>
+<div>
+    @Html.ActionLink("Add a new Student", "Create")
+</div>
+<div id="student-details-div"></div>
+<table>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().FirstName)</th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().LastName)</th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().StudentCode)</th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().IsGraduated)</th>
+        <th>@Html.DisplayNameFor(model => model.FirstOrDefault().FieldId)</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(model => item.FirstName)</td>
+            <td>@Html.DisplayFor(model => item.LastName)</td>
+            <td>@Html.DisplayFor(model => item.StudentCode)</td>
+            <td>@Html.DisplayFor(model => item.IsGraduated)</td>
+            <td>@Html.DisplayFor(model => item.Field.Caption)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Remove", "Delete", new { StudentCode = item.StudentCode })
+                <button onclick="return showDetails(@item.Id)">Details</button>
+            </td>
+        </tr>
+    }
+</table>

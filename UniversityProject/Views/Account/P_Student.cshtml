@@ -1,0 +1,5 @@
+﻿@model UniversityProject.Models.ViewModels.UserRegisterViewModel
+
+@Html.DisplayNameFor(model => model.StudentId)
+@Html.DropDownListFor(model => model.StudentId, (List<SelectListItem>)ViewBag.Students, "Select a Student")
+

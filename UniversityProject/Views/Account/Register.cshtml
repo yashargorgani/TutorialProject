@@ -1,0 +1,61 @@
+﻿@model UniversityProject.Models.ViewModels.UserRegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#searchBtn').click(function () {
+                var roleId = $('#RoleId').val();
+                var searchName = $('#searchName').val();
+                $('#searchResult').load('@Url.Action("P_LoadSearchResult")', { RoleId: roleId, SearchName: searchName});
+            });
+        })
+    </script>
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        @Html.DisplayNameFor(model => model.EmailAdress)
+        @Html.TextBoxFor(model => model.EmailAdress)
+        @Html.ValidationMessageFor(model => model.EmailAdress)
+    </p>
+
+    <p>
+        @Html.DisplayNameFor(model => model.Password)
+        @Html.PasswordFor(model => model.Password)
+        @Html.ValidationMessageFor(model => model.Password)
+    </p>
+
+    <p>
+        @Html.DisplayNameFor(model => model.ConfirmPassword)
+        @Html.PasswordFor(model => model.ConfirmPassword)
+        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+    </p>
+
+    <p>
+        @Html.DisplayNameFor(model => model.RoleId)
+        @Html.DropDownListFor(model => model.RoleId, (List<SelectListItem>)ViewBag.Roles, "Select a role")
+        @Html.ValidationMessageFor(model => model.RoleId)
+    </p>
+
+    <p>
+        @Html.Label("Student/Teacher")
+        @Html.TextBox("searchName")
+        <button type="button" id="searchBtn">Search</button>
+        <div id="searchResult"></div>
+    </p>
+
+    <p>
+        <input type="submit" value="Submit" />
+    </p>
+}

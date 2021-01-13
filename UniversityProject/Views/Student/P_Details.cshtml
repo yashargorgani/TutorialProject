@@ -1,0 +1,26 @@
+﻿@model UniversityProject.Models.Student
+
+<p>
+    @Html.LabelFor(model => model.FirstName)
+    @Html.DisplayFor(model => model.FirstName)
+</p>
+
+<p>
+    @Html.LabelFor(model => model.LastName)
+    @Html.DisplayFor(model => model.LastName)
+</p>
+
+<p>
+    @Html.LabelFor(model => model.StudentCode)
+    @Html.DisplayFor(model => model.StudentCode)
+</p>
+
+<p>
+    @Html.LabelFor(model => model.FieldId)
+    @Html.DisplayFor(model => model.Field.Caption)
+</p>
+
+<p>
+    @Html.LabelFor(model => model.IsGraduated)
+    @Html.DisplayFor(model => model.IsGraduated)
+</p>

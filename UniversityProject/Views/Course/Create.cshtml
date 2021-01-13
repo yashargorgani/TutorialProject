@@ -1,0 +1,66 @@
+﻿@model UniversityProject.Models.Course
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts
+{
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#FieldId').change(function () {
+                var field = $(this).val();
+
+                $.ajax({
+                    url: '@Url.Action("P_LoadTeachers")',
+                    data: { fieldId: field },
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function (result) {
+                        $.each(result, function (i, data) {
+                            var option = new Option(data.Text, data.Value);
+                            $('#TeacherId').append(option);
+                        });
+                    }
+                });
+            });
+        })
+    </script>
+}
+
+<h2>Create a Course</h2>
+
+<div>
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.DisplayNameFor(model => model.CourseBaseId)
+            @Html.DropDownListFor(model => model.CourseBaseId, (List<SelectListItem>)ViewBag.CourseBaseSelectList, "Select the base Course")
+            @Html.ValidationMessageFor(model => model.CourseBaseId)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.FieldId)
+            @Html.DropDownListFor(model => model.FieldId, (List<SelectListItem>)ViewBag.FieldSelectList, "Select the Field")
+            @Html.ValidationMessageFor(model => model.FieldId)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.TeacherId)
+            @Html.DropDownListFor(model => model.TeacherId, new List<SelectListItem>(), "Select the Teacher")
+            @Html.ValidationMessageFor(model => model.TeacherId)
+        </div>
+
+        <div>
+            @Html.DisplayNameFor(model => model.UnitCount)
+            @Html.TextBoxFor(model => model.UnitCount)
+            @Html.ValidationMessageFor(model => model.UnitCount)
+        </div>
+
+        <div>
+            <input value="Submit" type="submit" />
+        </div>
+    }
+</div>

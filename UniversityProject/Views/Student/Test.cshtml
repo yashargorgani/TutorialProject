@@ -1,0 +1,11 @@
+﻿@model UniversityProject.Models.Student
+@{
+    ViewBag.Title = "Test";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Test</h2>
+
+<p>@Html.DisplayNameFor(model => model.FirstName) @Html.DisplayFor(model => model.FirstName)</p>
+<p>@Html.DisplayNameFor(model => model.LastName) @Html.DisplayFor(model => model.LastName)</p>
+<p>@Html.DisplayNameFor(model => model.StudentCode) @Html.DisplayFor(model => model.StudentCode)</p>

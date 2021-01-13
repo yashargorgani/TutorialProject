@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@if (User.Identity.IsAuthenticated)
+{
+    <div>
+        @Html.ActionLink("Students", "Index", "Student")
+    </div>
+
+    <label>Hello @User.Identity.Name</label>
+}
+
+
+
+
